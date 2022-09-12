@@ -22,14 +22,17 @@ module.exports = {
       newChannel &&
       newChannel.id === joinToCreate
     ) {
-      const voiceChannel = await guild.channels.create(member.user.tag, {
-        type: "GUILD_VOICE",
-        parent: newChannel.parent,
-        permissionOverwrites: [
-          { id: member.id, allow: ["CONNECT"] },
-          { id: guild.id, deny: ["CONNECT"] },
-        ],
-      });
+      const voiceChannel = await guild.channels.create(
+        `📢 ${member.user.tag}`,
+        {
+          type: "GUILD_VOICE",
+          parent: newChannel.parent,
+          permissionOverwrites: [
+            { id: member.id, allow: ["CONNECT"] },
+            { id: guild.id, deny: ["CONNECT"] },
+          ],
+        }
+      );
 
       LogEmbed({
         channel: client.channels.cache.get("942060027823423538"),

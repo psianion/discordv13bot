@@ -39,7 +39,7 @@ module.exports = async (client, PG, Ascii) => {
   //PERMISSIONS CHECK
 
   client.on("ready", async () => {
-    const MainGuild = await client.guilds.cache.get("952286407869730876");
+    const MainGuild = await client.guilds.cache.get("706571213941637191");
 
     MainGuild.commands.set(CommandsArray);
   });

@@ -15,7 +15,7 @@ module.exports = {
     const { member, guild } = newState;
     const oldChannel = oldState.channel;
     const newChannel = newState.channel;
-    const joinToCreate = "1002065516007014480";
+    const joinToCreate = "935601690688782376";
 
     if (
       oldChannel !== newChannel &&
@@ -32,7 +32,7 @@ module.exports = {
       });
 
       LogEmbed({
-        channel: client.channels.cache.get("958084406998876280"),
+        channel: client.channels.cache.get("942060027823423538"),
         color: "#FFAC1C",
         description: `${member.user.username} started a stream in ${guild.name}!`,
       });

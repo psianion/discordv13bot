@@ -59,6 +59,11 @@ module.exports = {
       (!newChannel || newChannel.id !== ownedChannel)
     ) {
       client.newVoiceGenerator.set(member.id, null);
+      LogEmbed({
+        channel: client.channels.cache.get("942060027823423538"),
+        color: "#FFAC1C",
+        description: `${member.user.username} ended streaming in ${guild.name}!`,
+      });
       oldChannel.delete().catch(() => {});
     }
   },

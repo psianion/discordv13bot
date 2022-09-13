@@ -51,7 +51,7 @@ module.exports = {
               name: "GBL Leaderboard (ಠ_ಠ)",
               iconURL: member.avatarURL({ dynamic: true, size: 512 }),
             })
-            .setDescription("`Season 11 Rankings`");
+            .setDescription("`Season 12 Rankings`");
 
           const canvas = createCanvas(1000, 900);
           const context = canvas.getContext("2d");

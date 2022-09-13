@@ -9,6 +9,8 @@ module.exports = {
    * @param {CommandInteraction} interaction
    */
   execute(interaction) {
-    interaction.reply({ content: "Poing" });
+    const { options, member, guild } = interaction;
+
+    interaction.reply({ content: `Poings ${member}` });
   },
 };

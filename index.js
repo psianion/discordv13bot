@@ -1,7 +1,8 @@
 require("dotenv").config();
 const { Client, Collection } = require("discord.js");
 const client = new Client({ intents: 32767 });
-
+const discordModals = require("discord-modals");
+discordModals(client);
 const { promisify } = require("util");
 const { glob } = require("glob");
 const Ascii = require("ascii-table");

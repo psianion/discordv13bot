@@ -73,11 +73,11 @@ module.exports = {
           User.findOne({ discordId: player.user.id }, (err, data) => {
             if (!data) {
               return interaction.reply({
-                content: `This ${player.user.username} is not registered?`,
+                content: `This <@${player.user.id}> is not registered?`,
               });
             } else if (data.game.pokemongo.bf.s6.groupPokemon.length === 6) {
               return interaction.reply({
-                content: `This ${player.user.username} already has 6 Pokemon registered`,
+                content: `This <@${player.user.id}> already has 6 Pokemon registered`,
               });
             } else {
               for (let option of options._hoistedOptions.filter(function (el) {
@@ -99,7 +99,7 @@ module.exports = {
               }
               data.save().catch((err) => console.log(err));
               interaction.reply({
-                content: `${player.user.username}'s Pokemon are registered now!`,
+                content: `<@${player.user.id}>'s Pokemon are registered now!`,
               });
             }
           });

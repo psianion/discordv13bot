@@ -1,5 +1,5 @@
 // https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-voiceStateUpdate
-const { VoiceState } = require("discord.js");
+const { VoiceState, Client } = require("discord.js");
 const LogEmbed = require("../../Components/Embeds/LogEmbed");
 
 module.exports = {
@@ -9,6 +9,7 @@ module.exports = {
    *
    * @param {VoiceState} newState
    * @param {VoiceState} oldState
+   * @param {Client} client
    */
 
   async execute(oldState, newState, client) {

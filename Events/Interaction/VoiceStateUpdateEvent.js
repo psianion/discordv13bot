@@ -1,5 +1,5 @@
 // https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-voiceStateUpdate
-const { VoiceState, Client } = require("discord.js");
+const { VoiceState } = require("discord.js");
 const LogEmbed = require("../../Components/Embeds/LogEmbed");
 
 module.exports = {
@@ -9,7 +9,6 @@ module.exports = {
    *
    * @param {VoiceState} newState
    * @param {VoiceState} oldState
-   * @param {Client} client
    */
 
   async execute(oldState, newState, client) {
@@ -35,12 +34,6 @@ module.exports = {
         }
       );
 
-      LogEmbed({
-        channel: client.channels.cache.get("942060027823423538"),
-        color: "#FFAC1C",
-        description: `${member.user.username} started a stream in ${guild.name}!`,
-      });
-
       client.newVoiceGenerator.set(member.id, voiceChannel.id);
 
       await newChannel.permissionOverwrites.edit(member, { CONNECT: false });
@@ -60,11 +53,6 @@ module.exports = {
       (!newChannel || newChannel.id !== ownedChannel)
     ) {
       client.newVoiceGenerator.set(member.id, null);
-      LogEmbed({
-        channel: client.channels.cache.get("942060027823423538"),
-        color: "#FFAC1C",
-        description: `${member.user.username} ended streaming in ${guild.name}!`,
-      });
       oldChannel.delete().catch(() => {});
     }
   },

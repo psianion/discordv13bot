@@ -1,4 +1,4 @@
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, MessageEmbed, Client } = require("discord.js");
 const LogEmbed = require("../../Components/Embeds/LogEmbed");
 
 module.exports = {
@@ -105,6 +105,7 @@ module.exports = {
   /**
    *
    * @param {CommandInteraction} interaction
+   * @param {Client} client
    */
   execute(interaction, client) {
     const { options, member, guild } = interaction;

@@ -55,6 +55,9 @@ const userSchema = mongoose.Schema({
             type: mongoose.SchemaTypes.Boolean,
             default: false,
           },
+          group: {
+            type: mongoose.SchemaTypes.String,
+          },
           groupWins: {
             type: mongoose.SchemaTypes.Number,
             default: 0,

@@ -8,6 +8,13 @@ module.exports = {
    */
   execute(client) {
     console.log("client ready");
-    client.user.setActivity("Hello!", { type: "WATCHING" });
+    setInterval(() => {
+      const targetGuild = client.guilds.cache.get("706571213941637191");
+      if (targetGuild) {
+        client.user.setActivity(
+          "with " + targetGuild.memberCount + " trainer's brains!"
+        );
+      }
+    }, 1800000);
   },
 };

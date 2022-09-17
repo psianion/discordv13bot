@@ -186,6 +186,10 @@ module.exports = {
             return el.type === "USER";
           })) {
             option.member.roles.add(group);
+            User.findOne({ discordId: option.value }, (err, data) => {
+              data.game.pokemongo.bf.s6.group = group.name;
+              data.save().catch((err) => console.log(err));
+            });
           }
 
           interaction.reply({

@@ -1,11 +1,12 @@
 const { CommandInteraction, Client } = require("discord.js");
 const User = require("../../Schemas/User");
+const Frontier = require("../../Schemas/Frontier");
 const PokemonList = require("../../Components/assets/data/pointsData");
 
 module.exports = {
   name: "frontier",
   description: "Frontier Commands for Admins",
-  permission: "ADMINISTRATOR",
+  permission: "MANAGE_ROLES",
   options: [
     {
       name: "groupteam",
@@ -123,6 +124,45 @@ module.exports = {
         },
       ],
     },
+    {
+      name: "groupscore",
+      type: "SUB_COMMAND",
+      description: "Report scores for group stages",
+      options: [
+        {
+          name: "winner",
+          type: "USER",
+          required: true,
+          description: "Winner",
+        },
+        {
+          name: "winnerscore",
+          type: "INTEGER",
+          required: true,
+          description: "Winner Score",
+          choices: [
+            { name: "3", value: 3 },
+            { name: "2", value: 2 },
+          ],
+        },
+        {
+          name: "loserscore",
+          type: "INTEGER",
+          required: true,
+          description: "Loser Score",
+          choices: [
+            { name: "0", value: 0 },
+            { name: "1", value: 1 },
+          ],
+        },
+        {
+          name: "loser",
+          type: "USER",
+          required: true,
+          description: "Loser",
+        },
+      ],
+    },
   ],
   /**
    *
@@ -178,26 +218,73 @@ module.exports = {
           addGroupPokemon();
         }
         break;
-      case "groupadd": {
-        const addGroup = async () => {
-          const group = options.getRole("role");
+      case "groupadd":
+        {
+          const addGroup = async () => {
+            const group = options.getRole("role");
 
-          for (let option of options._hoistedOptions.filter(function (el) {
-            return el.type === "USER";
-          })) {
-            option.member.roles.add(group);
-            User.findOne({ discordId: option.value }, (err, data) => {
-              data.game.pokemongo.bf.s6.group = group.name;
-              data.save().catch((err) => console.log(err));
+            for (let option of options._hoistedOptions.filter(function (el) {
+              return el.type === "USER";
+            })) {
+              option.member.roles.add(group);
+              User.findOne({ discordId: option.value }, (err, data) => {
+                data.game.pokemongo.bf.s6.group = group.name;
+                data.save().catch((err) => console.log(err));
+              });
+            }
+
+            interaction.reply({
+              content: `**${group.name}** assigned!`,
+              ephemeral: true,
             });
-          }
+          };
+          addGroup();
+        }
+        break;
+      case "groupscore": {
+        const addScore = async () => {
+          const winner = options.getMember("winner");
+          const loser = options.getMember("loser");
+          const winnerscore = options.getInteger("winnerscore");
+          const loserscore = options.getInteger("loserscore");
+
+          User.findOne({ discordId: winner.user.id }, (err, data) => {
+            data.game.pokemongo.bf.s6.groupWins += winnerscore;
+            data.game.pokemongo.bf.s6.groupMatches += 3;
+
+            Frontier.findOne(
+              { team: data.game.pokemongo.bf.s6.team },
+              (err, teamdata) => {
+                teamdata.groupWins += winnerscore;
+                teamdata.groupMatches += 3;
+                teamdata.save().catch((err) => console.log(err));
+              }
+            );
+
+            data.save().catch((err) => console.log(err));
+          });
+
+          User.findOne({ discordId: loser.user.id }, (err, data) => {
+            data.game.pokemongo.bf.s6.groupWins += loserscore;
+            data.game.pokemongo.bf.s6.groupMatches += 3;
+
+            Frontier.findOne(
+              { team: data.game.pokemongo.bf.s6.team },
+              (err, teamdata) => {
+                teamdata.groupWins += loserscore;
+                teamdata.groupMatches += 3;
+                teamdata.save().catch((err) => console.log(err));
+              }
+            );
+
+            data.save().catch((err) => console.log(err));
+          });
 
           interaction.reply({
-            content: `**${group.name}** assigned!`,
-            ephemeral: true,
+            content: `${winner.user} ${winnerscore}-${loserscore} ${loser.user} reported. `,
           });
         };
-        addGroup();
+        addScore();
       }
     }
   },

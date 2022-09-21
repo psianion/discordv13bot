@@ -1,5 +1,4 @@
 const { CommandInteraction, MessageEmbed, Client } = require("discord.js");
-const LogEmbed = require("../../Components/Embeds/LogEmbed");
 
 module.exports = {
   name: "stream",

@@ -1,6 +1,5 @@
 // https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-voiceStateUpdate
 const { VoiceState, Client } = require("discord.js");
-// const LogEmbed = require("../../Components/Embeds/LogEmbed");
 
 module.exports = {
   name: "voiceStateUpdate",

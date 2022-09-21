@@ -5,7 +5,6 @@ const {
   MessageButton,
   MessageAttachment,
 } = require("discord.js");
-const LogEmbed = require("../../Components/Embeds/LogEmbed");
 const User = require("../../Schemas/User");
 const { createCanvas, registerFont, loadImage } = require("canvas");
 

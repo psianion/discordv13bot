@@ -4,7 +4,6 @@ const {
   MessageActionRow,
   MessageButton,
 } = require("discord.js");
-const LogEmbed = require("../../Components/Embeds/LogEmbed");
 const User = require("../../Schemas/User");
 const PokemonList = require("../../Components/assets/data/pointsData");
 

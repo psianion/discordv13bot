@@ -143,6 +143,8 @@ module.exports = {
           choices: [
             { name: "3", value: 3 },
             { name: "2", value: 2 },
+            { name: "0", value: 0 },
+            { name: "1", value: 1 },
           ],
         },
         {
@@ -151,6 +153,8 @@ module.exports = {
           required: true,
           description: "Loser Score",
           choices: [
+            { name: "3", value: 3 },
+            { name: "2", value: 2 },
             { name: "0", value: 0 },
             { name: "1", value: 1 },
           ],

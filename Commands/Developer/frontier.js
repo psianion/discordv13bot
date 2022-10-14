@@ -9,9 +9,9 @@ module.exports = {
   permission: "MANAGE_ROLES",
   options: [
     {
-      name: "groupteam",
+      name: "koteam",
       type: "SUB_COMMAND",
-      description: "Add Group Stage teams",
+      description: "Add Knockout Stage teams",
       options: [
         {
           name: "member",
@@ -125,9 +125,9 @@ module.exports = {
       ],
     },
     {
-      name: "groupscore",
+      name: "koscore",
       type: "SUB_COMMAND",
-      description: "Report scores for group stages",
+      description: "Report scores for knockout stages",
       options: [
         {
           name: "winner",
@@ -178,7 +178,7 @@ module.exports = {
     const subCommand = options.getSubcommand();
 
     switch (subCommand) {
-      case "groupteam":
+      case "koteam":
         {
           const addGroupPokemon = async () => {
             const player = options.getMember("member");
@@ -188,7 +188,9 @@ module.exports = {
                 return interaction.reply({
                   content: `This <@${player.user.id}> is not registered?`,
                 });
-              } else if (data.game.pokemongo.bf.s6.groupPokemon.length === 6) {
+              } else if (
+                data.game.pokemongo.bf.s6.knockoutPokemon.length === 6
+              ) {
                 return interaction.reply({
                   content: `This <@${player.user.id}> already has 6 Pokemon registered`,
                 });
@@ -206,7 +208,7 @@ module.exports = {
                   let foundPokemon = PokemonList.find(
                     (p) => p.pokemonName === pokemonArray[0]
                   );
-                  data.game.pokemongo.bf.s6.groupPokemon.push({
+                  data.game.pokemongo.bf.s6.knockoutPokemon.push({
                     name: foundPokemon.pokemonName,
                     sprite: foundPokemon.pokemonSprite,
                     isShadow: isShadow,
@@ -245,7 +247,7 @@ module.exports = {
           addGroup();
         }
         break;
-      case "groupscore": {
+      case "koscore": {
         const addScore = async () => {
           const winner = options.getMember("winner");
           const loser = options.getMember("loser");
@@ -253,14 +255,14 @@ module.exports = {
           const loserscore = options.getInteger("loserscore");
 
           User.findOne({ discordId: winner.user.id }, (err, data) => {
-            data.game.pokemongo.bf.s6.groupWins += winnerscore;
-            data.game.pokemongo.bf.s6.groupMatches += 3;
+            data.game.pokemongo.bf.s6.knockoutWins += winnerscore;
+            data.game.pokemongo.bf.s6.knockoutMatches += 3;
 
             Frontier.findOne(
               { team: data.game.pokemongo.bf.s6.team },
               (err, teamdata) => {
-                teamdata.groupWins += winnerscore;
-                teamdata.groupMatches += 3;
+                teamdata.knockoutWins += winnerscore;
+                teamdata.knockoutMatches += 3;
                 teamdata.save().catch((err) => console.log(err));
               }
             );
@@ -269,14 +271,14 @@ module.exports = {
           });
 
           User.findOne({ discordId: loser.user.id }, (err, data) => {
-            data.game.pokemongo.bf.s6.groupWins += loserscore;
-            data.game.pokemongo.bf.s6.groupMatches += 3;
+            data.game.pokemongo.bf.s6.knockoutWins += loserscore;
+            data.game.pokemongo.bf.s6.knockoutMatches += 3;
 
             Frontier.findOne(
               { team: data.game.pokemongo.bf.s6.team },
               (err, teamdata) => {
-                teamdata.groupWins += loserscore;
-                teamdata.groupMatches += 3;
+                teamdata.knockoutWins += loserscore;
+                teamdata.knockoutMatches += 3;
                 teamdata.save().catch((err) => console.log(err));
               }
             );
@@ -285,7 +287,7 @@ module.exports = {
           });
 
           interaction.reply({
-            content: `${winner.user} ${winnerscore}-${loserscore} ${loser.user} reported. `,
+            content: `${winner.user} ${winnerscore}-${loserscore} ${loser.user} reported for KOs. `,
           });
         };
         addScore();

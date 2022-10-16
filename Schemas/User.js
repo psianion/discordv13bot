@@ -58,6 +58,15 @@ const userSchema = mongoose.Schema({
           group: {
             type: mongoose.SchemaTypes.String,
           },
+          qf: {
+            type: mongoose.SchemaTypes.String,
+          },
+          sf: {
+            type: mongoose.SchemaTypes.String,
+          },
+          finals: {
+            type: mongoose.SchemaTypes.Boolean,
+          },
           groupWins: {
             type: mongoose.SchemaTypes.Number,
             default: 0,

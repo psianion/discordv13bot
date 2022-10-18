@@ -10,11 +10,7 @@ const frontierSchema = mongoose.Schema({
     type: mongoose.SchemaTypes.Number,
     default: 0,
   },
-  knockoutWins: {
-    type: mongoose.SchemaTypes.Number,
-    default: 0,
-  },
-  knockoutMatches: {
+  knockoutPoints: {
     type: mongoose.SchemaTypes.Number,
     default: 0,
   },

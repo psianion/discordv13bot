@@ -261,8 +261,7 @@ module.exports = {
             Frontier.findOne(
               { team: data.game.pokemongo.bf.s6.team },
               (err, teamdata) => {
-                teamdata.knockoutWins += winnerscore;
-                teamdata.knockoutMatches += 3;
+                teamdata.knockoutPoints += 1;
                 teamdata.save().catch((err) => console.log(err));
               }
             );
@@ -277,8 +276,7 @@ module.exports = {
             Frontier.findOne(
               { team: data.game.pokemongo.bf.s6.team },
               (err, teamdata) => {
-                teamdata.knockoutWins += loserscore;
-                teamdata.knockoutMatches += 3;
+                teamdata.knockoutPoints += 0;
                 teamdata.save().catch((err) => console.log(err));
               }
             );

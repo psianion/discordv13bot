@@ -254,9 +254,11 @@ module.exports = {
           const winnerscore = options.getInteger("winnerscore");
           const loserscore = options.getInteger("loserscore");
 
+          const totalscore = winnerscore + loserscore;
+
           User.findOne({ discordId: winner.user.id }, (err, data) => {
             data.game.pokemongo.bf.s6.knockoutWins += winnerscore;
-            data.game.pokemongo.bf.s6.knockoutMatches += 3;
+            data.game.pokemongo.bf.s6.knockoutMatches += totalscore;
 
             Frontier.findOne(
               { team: data.game.pokemongo.bf.s6.team },
@@ -271,7 +273,7 @@ module.exports = {
 
           User.findOne({ discordId: loser.user.id }, (err, data) => {
             data.game.pokemongo.bf.s6.knockoutWins += loserscore;
-            data.game.pokemongo.bf.s6.knockoutMatches += 3;
+            data.game.pokemongo.bf.s6.knockoutMatches += totalscore;
 
             Frontier.findOne(
               { team: data.game.pokemongo.bf.s6.team },

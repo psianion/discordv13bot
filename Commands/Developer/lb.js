@@ -15,7 +15,7 @@ module.exports = {
     {
       name: "gbl",
       type: "SUB_COMMAND",
-      description: "GBL S12 Leaderboards",
+      description: "GBL S13 Leaderboards",
       options: [
         {
           name: "page",
@@ -50,7 +50,7 @@ module.exports = {
               name: "GBL Leaderboard (ಠ_ಠ)",
               iconURL: member.avatarURL({ dynamic: true, size: 512 }),
             })
-            .setDescription("`Season 12 Rankings`");
+            .setDescription("`Season 13 Rankings`");
 
           const canvas = createCanvas(1000, 900);
           const context = canvas.getContext("2d");
@@ -63,8 +63,8 @@ module.exports = {
           var pg = options.getInteger("page");
           // Select the style that will be used to fill the text in
 
-          User.find({ "game.pokemongo.gbl.s12.currentMMR": { $exists: true } })
-            .sort([["game.pokemongo.gbl.s12.currentMMR", "descending"]])
+          User.find({ "game.pokemongo.gbl.s13.currentMMR": { $exists: true } })
+            .sort([["game.pokemongo.gbl.s13.currentMMR", "descending"]])
             .exec((err, res) => {
               var page = Math.ceil(res.length / 10);
 
@@ -114,7 +114,7 @@ module.exports = {
                     92 + (i - start) * 83
                   );
                   context.fillText(
-                    `${res[i].game.pokemongo.gbl.s12.currentMMR}`,
+                    `${res[i].game.pokemongo.gbl.s13.currentMMR}`,
                     827.2,
                     92 + (i - start) * 83
                   );
@@ -142,7 +142,7 @@ module.exports = {
                     context.fillText(
                       `${res[
                         i
-                      ].game.pokemongo.gbl.s12.currentMMR.toLocaleString()}`,
+                      ].game.pokemongo.gbl.s13.currentMMR.toLocaleString()}`,
                       827.2,
                       92 + (i - start) * 83
                     );
@@ -162,7 +162,7 @@ module.exports = {
                     context.fillText(
                       `${res[
                         i
-                      ].game.pokemongo.gbl.s12.currentMMR.toLocaleString()}`,
+                      ].game.pokemongo.gbl.s13.currentMMR.toLocaleString()}`,
                       827.2,
                       92 + (i - start) * 83
                     );
@@ -180,7 +180,7 @@ module.exports = {
                       92 + (i - start) * 83
                     );
                     context.fillText(
-                      `${res[i].game.pokemongo.gbl.s12.currentMMR}`,
+                      `${res[i].game.pokemongo.gbl.s13.currentMMR}`,
                       827.2,
                       92 + (i - start) * 83
                     );
@@ -197,7 +197,7 @@ module.exports = {
                       92 + (i - start) * 83
                     );
                     context.fillText(
-                      `${res[i].game.pokemongo.gbl.s12.currentMMR}`,
+                      `${res[i].game.pokemongo.gbl.s13.currentMMR}`,
                       827.2,
                       92 + (i - start) * 83
                     );
@@ -211,7 +211,7 @@ module.exports = {
               LeaderboardEmbed.setImage("attachment://gbl-lb.png");
 
               interaction.reply({
-                content: `**Viewing GBL S12 Rankings** • [${member}] • <:pogo:941787322624667668> `,
+                content: `**Viewing GBL S13 Rankings** • [${member}] • <:pogo:941787322624667668> `,
                 embeds: [LeaderboardEmbed],
                 files: [attachment, hqlogo],
               });

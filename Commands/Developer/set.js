@@ -105,15 +105,15 @@ module.exports = {
                       .setURL("https://www.pvphq.in/lb/gbl")
                       .setStyle("LINK")
                       .setEmoji("🚀")
-                      .setLabel("GBL S12 Leaderboards")
+                      .setLabel("GBL S13 Leaderboards")
                   ),
                 ],
                 ephemeral: true,
               });
-            } else if (!data.game.pokemongo.gbl.s12.currentMMR) {
-              data.game.pokemongo.gbl.s12.currentMMR = elo;
-              data.game.pokemongo.gbl.s12.highestMMR = elo;
-              data.game.pokemongo.gbl.s12.rank = setRank(elo);
+            } else if (!data.game.pokemongo.gbl.s13.currentMMR) {
+              data.game.pokemongo.gbl.s13.currentMMR = elo;
+              data.game.pokemongo.gbl.s13.highestMMR = elo;
+              data.game.pokemongo.gbl.s13.rank = setRank(elo);
               data.save().catch((err) => console.log(err));
               interaction.reply({
                 embeds: [
@@ -129,13 +129,13 @@ module.exports = {
                       .setURL("https://www.pvphq.in/lb/gbl")
                       .setStyle("LINK")
                       .setEmoji("🚀")
-                      .setLabel("GBL S12 Leaderboards")
+                      .setLabel("GBL S13 Leaderboards")
                   ),
                 ],
               });
             } else {
-              if (data.game.pokemongo.gbl.s12.highestMMR > elo) {
-                data.game.pokemongo.gbl.s12.currentMMR = elo;
+              if (data.game.pokemongo.gbl.s13.highestMMR > elo) {
+                data.game.pokemongo.gbl.s13.currentMMR = elo;
                 data.save().catch((err) => console.log(err));
                 interaction.reply({
                   embeds: [
@@ -149,14 +149,14 @@ module.exports = {
                         .setURL("https://www.pvphq.in/lb/gbl")
                         .setStyle("LINK")
                         .setEmoji("🚀")
-                        .setLabel("GBL S12 Leaderboards")
+                        .setLabel("GBL S13 Leaderboards")
                     ),
                   ],
                 });
               } else {
-                data.game.pokemongo.gbl.s12.currentMMR = elo;
-                data.game.pokemongo.gbl.s12.highestMMR = elo;
-                data.game.pokemongo.gbl.s12.rank = setRank(elo);
+                data.game.pokemongo.gbl.s13.currentMMR = elo;
+                data.game.pokemongo.gbl.s13.highestMMR = elo;
+                data.game.pokemongo.gbl.s13.rank = setRank(elo);
                 data.save().catch((err) => console.log(err));
                 interaction.reply({
                   embeds: [
@@ -172,7 +172,7 @@ module.exports = {
                         .setURL("https://www.pvphq.in/lb/gbl")
                         .setStyle("LINK")
                         .setEmoji("🚀")
-                        .setLabel("GBL S12 Leaderboards")
+                        .setLabel("GBL S13 Leaderboards")
                     ),
                   ],
                 });

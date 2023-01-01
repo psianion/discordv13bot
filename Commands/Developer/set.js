@@ -14,7 +14,7 @@ module.exports = {
     {
       name: "gbl",
       type: "SUB_COMMAND",
-      description: "Set GBL ELO for S12",
+      description: "Set GBL ELO for S13",
       options: [
         {
           name: "elo",
